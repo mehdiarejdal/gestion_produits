@@ -62,3 +62,17 @@ def passer_commande(request):
     # Logic to process the order and save it in the database
     return Response(status=status.HTTP_201_CREATED)
 
+def afficher_produits(request):
+    produits = Produit.objects.all()
+    return render(request, 'gestion_prod/produits.html', {'produits': produits})
+
+def afficher_panier(request):
+    return render(request, 'gestion_prod/panier.html')
+
+def passer_commande(request):
+    if request.method == 'POST':
+        serializer = CommandeSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return render(request, 'gestion_prod/commande_confirmee.html')
+    return render(request, 'gestion_prod/passer_commande.html')
