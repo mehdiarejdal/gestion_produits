@@ -1,3 +1,6 @@
-<h2>{{ produit.nom }}</h2>
-<p>{{ produit.description }}</p>
-<!-- Other product details -->
+<h1>Détails du produit</h1>
+<h3>{{ produit.nom }}</h3>
+<p>Prix: {{ produit.prix }}</p>
+<p>Description: {{ produit.description }}</p>
+
+<a href="{% url 'commander' %}" class="btn btn-primary">Passer une commande</a>
